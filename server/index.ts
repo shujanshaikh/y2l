@@ -296,4 +296,7 @@ const app = new Elysia()
             }
         },
         { body: urlBody },
-    );
+    )
+    .listen({ port: Number(Bun.env.PORT ?? 3000), hostname: "0.0.0.0" });
+
+console.log(` y2l is running at ${app.server?.hostname}:${app.server?.port}`);
