@@ -1,3 +1,42 @@
+/* ── Theme Toggle ── */
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(15deg);
+}
+
 /* ── Layout ── */
 .app {
   width: 100%;
@@ -110,6 +149,10 @@
   pointer-events: none;
 }
 
+[data-theme="light"] .card-inner {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 24px rgba(0, 0, 0, 0.03);
+}
+
 .card-inner:has(input:focus) {
   border-color: rgba(255, 45, 85, 0.25);
 }
@@ -200,6 +243,12 @@
   box-shadow:
     0 0 0 3px var(--accent-dim),
     0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .url-input:focus {
+  box-shadow:
+    0 0 0 3px var(--accent-dim),
+    0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .url-input:disabled {
