@@ -13,7 +13,6 @@ RUN bun install --frozen-lockfile --production
 
 COPY server/ .
 
-ENV PORT=3001
-EXPOSE 3001
+EXPOSE 8080
 
 CMD ["bun", "run", "index.ts"]

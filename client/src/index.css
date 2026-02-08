@@ -1,60 +1,73 @@
 :root {
-  --bg: #0a0a0a;
-  --bg-elevated: #111111;
-  --bg-surface: #161616;
-  --bg-hover: #1a1a1a;
-  --border: #222222;
-  --border-subtle: #1a1a1a;
+  --bg: #09090b;
+  --bg-elevated: #111113;
+  --bg-surface: #161618;
+  --bg-hover: #1c1c1f;
+  --border: #232326;
+  --border-subtle: #1c1c1f;
   --border-accent: #ff2d55;
 
-  --text: #e8e8e8;
-  --text-secondary: #888888;
-  --text-muted: #555555;
+  --text: #ececef;
+  --text-secondary: #8a8a8e;
+  --text-muted: #4e4e52;
   --text-accent: #ff2d55;
 
   --accent: #ff2d55;
-  --accent-dim: rgba(255, 45, 85, 0.12);
+  --accent-dim: rgba(255, 45, 85, 0.1);
   --accent-glow: rgba(255, 45, 85, 0.06);
-  --accent-hover: #ff1744;
+  --accent-hover: #ff1a45;
 
   --success: #00e676;
-  --success-dim: rgba(0, 230, 118, 0.1);
+  --success-dim: rgba(0, 230, 118, 0.08);
   --error: #ff5252;
-  --error-dim: rgba(255, 82, 82, 0.1);
+  --error-dim: rgba(255, 82, 82, 0.08);
 
   --font-display: 'Syne', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
   --font-mono: 'DM Mono', monospace;
 
-  --radius-sm: 6px;
+  --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 20px;
   --radius-xl: 28px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 6px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-accent: 0 4px 24px rgba(255, 45, 85, 0.2), 0 1px 4px rgba(255, 45, 85, 0.1);
 }
 
 [data-theme="light"] {
-  --bg: #f5f5f7;
+  --bg: #f4f4f6;
   --bg-elevated: #ffffff;
-  --bg-surface: #f0f0f2;
-  --bg-hover: #e8e8ec;
-  --border: #d4d4d8;
-  --border-subtle: #e4e4e8;
+  --bg-surface: #ededf0;
+  --bg-hover: #e4e4e8;
+  --border: #d2d2d6;
+  --border-subtle: #e0e0e4;
   --border-accent: #ff2d55;
 
-  --text: #1a1a1a;
-  --text-secondary: #6b6b6b;
-  --text-muted: #9a9a9a;
+  --text: #18181b;
+  --text-secondary: #64646b;
+  --text-muted: #9c9ca2;
   --text-accent: #ff2d55;
 
   --accent: #ff2d55;
-  --accent-dim: rgba(255, 45, 85, 0.08);
-  --accent-glow: rgba(255, 45, 85, 0.04);
+  --accent-dim: rgba(255, 45, 85, 0.07);
+  --accent-glow: rgba(255, 45, 85, 0.03);
   --accent-hover: #e6194b;
 
   --success: #16a34a;
-  --success-dim: rgba(22, 163, 74, 0.08);
+  --success-dim: rgba(22, 163, 74, 0.07);
   --error: #dc2626;
-  --error-dim: rgba(220, 38, 38, 0.08);
+  --error-dim: rgba(220, 38, 38, 0.07);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-accent: 0 4px 20px rgba(255, 45, 85, 0.12), 0 1px 4px rgba(255, 45, 85, 0.06);
 }
 
 *, *::before, *::after {
@@ -89,35 +102,41 @@ body::before {
   background-size: 256px 256px;
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 [data-theme="light"] body::before {
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 /* Accent glow at top */
 body::after {
   content: '';
   position: fixed;
-  top: -40vh;
+  top: -50vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 120vw;
-  height: 80vh;
+  width: 140vw;
+  height: 90vh;
   background: radial-gradient(
-    ellipse 50% 40% at 50% 50%,
-    rgba(255, 45, 85, 0.05) 0%,
-    rgba(255, 45, 85, 0.02) 40%,
-    transparent 70%
+    ellipse 45% 35% at 50% 50%,
+    rgba(255, 45, 85, 0.06) 0%,
+    rgba(255, 45, 85, 0.02) 35%,
+    transparent 65%
   );
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 [data-theme="light"] body::after {
-  opacity: 0.5;
+  background: radial-gradient(
+    ellipse 45% 35% at 50% 50%,
+    rgba(255, 45, 85, 0.04) 0%,
+    rgba(255, 45, 85, 0.015) 35%,
+    transparent 65%
+  );
+  opacity: 0.6;
 }
 
 #root {
@@ -140,7 +159,6 @@ input::placeholder {
   color: var(--text-muted);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
