@@ -51,7 +51,7 @@ const app = new Elysia()
                 }
 
                 const proc = Bun.spawn(
-                    ["yt-dlp", "--dump-json", "--no-playlist", url],
+                    ["yt-dlp", "--dump-json", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
 
@@ -96,7 +96,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", url],
+                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -118,6 +118,8 @@ const app = new Elysia()
                         "--merge-output-format",
                         "mp4",
                         "--no-playlist",
+                        "--js-runtimes",
+                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
@@ -154,7 +156,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", url],
+                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -174,6 +176,8 @@ const app = new Elysia()
                         "-f",
                         "bestaudio",
                         "--no-playlist",
+                        "--js-runtimes",
+                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
@@ -209,7 +213,7 @@ const app = new Elysia()
                 }
 
                 const proc = Bun.spawn(
-                    ["yt-dlp", "--dump-json", "--no-playlist", url],
+                    ["yt-dlp", "--dump-json", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
 
@@ -257,7 +261,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", url],
+                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -276,6 +280,8 @@ const app = new Elysia()
                         "-f",
                         "best[ext=mp4]/best",
                         "--no-playlist",
+                        "--js-runtimes",
+                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
