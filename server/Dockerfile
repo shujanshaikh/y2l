@@ -8,10 +8,10 @@ RUN apt-get update && \
     chmod a+rx /usr/local/bin/yt-dlp && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY package.json bun.lock* ./
+COPY server/package.json server/bun.lock* ./
 RUN bun install --frozen-lockfile --production
 
-COPY . .
+COPY server/ .
 
 ENV PORT=3001
 EXPOSE 3001
