@@ -34,6 +34,10 @@ function isValidInstagramUrl(url: string): boolean {
 
 const urlBody = t.Object({ url: t.String() });
 
+// Common yt-dlp flags for YouTube requests
+const ytBase = ["yt-dlp", "--js-runtimes", "bun", "--no-playlist"];
+const ytExtractorArgs = ["--extractor-args", "youtube:player_client=web_creator,mediaconnect"];
+
 const app = new Elysia()
     .use(cors({ exposeHeaders: ["Content-Disposition"] }))
     .get("/", () => ({ status: "ok", message: "y2l server running" }))
@@ -51,7 +55,7 @@ const app = new Elysia()
                 }
 
                 const proc = Bun.spawn(
-                    ["yt-dlp", "--dump-json", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
+                    [...ytBase, ...ytExtractorArgs, "--dump-json", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
 
@@ -96,7 +100,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
+                    [...ytBase, ...ytExtractorArgs, "--print", "title", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -112,14 +116,12 @@ const app = new Elysia()
                 // Stream video to stdout
                 const proc = Bun.spawn(
                     [
-                        "yt-dlp",
+                        ...ytBase,
+                        ...ytExtractorArgs,
                         "-f",
                         "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
                         "--merge-output-format",
                         "mp4",
-                        "--no-playlist",
-                        "--js-runtimes",
-                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
@@ -156,7 +158,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
+                    [...ytBase, ...ytExtractorArgs, "--print", "title", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -172,12 +174,10 @@ const app = new Elysia()
                 // Stream best audio to stdout
                 const proc = Bun.spawn(
                     [
-                        "yt-dlp",
+                        ...ytBase,
+                        ...ytExtractorArgs,
                         "-f",
                         "bestaudio",
-                        "--no-playlist",
-                        "--js-runtimes",
-                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
@@ -213,7 +213,7 @@ const app = new Elysia()
                 }
 
                 const proc = Bun.spawn(
-                    ["yt-dlp", "--dump-json", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
+                    [...ytBase, "--dump-json", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
 
@@ -261,7 +261,7 @@ const app = new Elysia()
 
                 // Get title first
                 const infoProc = Bun.spawn(
-                    ["yt-dlp", "--print", "title", "--no-playlist", "--js-runtimes", "nodejs:bun", url],
+                    [...ytBase, "--print", "title", url],
                     { stdout: "pipe", stderr: "pipe" },
                 );
                 const title = (
@@ -276,12 +276,9 @@ const app = new Elysia()
 
                 const proc = Bun.spawn(
                     [
-                        "yt-dlp",
+                        ...ytBase,
                         "-f",
                         "best[ext=mp4]/best",
-                        "--no-playlist",
-                        "--js-runtimes",
-                        "nodejs:bun",
                         "-o",
                         "-",
                         url,
