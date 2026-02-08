@@ -1,4 +1,4 @@
-FROM oven/bun:1.1.38 AS base
+FROM oven/bun:1-debian AS base
 WORKDIR /app
 
 # Install yt-dlp and ffmpeg
